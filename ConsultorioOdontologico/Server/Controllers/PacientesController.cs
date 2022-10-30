@@ -1,5 +1,5 @@
-﻿using CONSULTORIODONTOLOGICO.BD.Data;
-using CONSULTORIODONTOLOGICO.BD.Data.Entidades;
+﻿//using CONSULTORIODONTOLOGICO.BD.Data;
+//using CONSULTORIODONTOLOGICO.BD.Data.Entidades;
 using ConsultorioOdontologico.BD.Data.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +19,9 @@ namespace CONSULTORIODONTOLOGICO.Server.Controllers
         [HttpGet]//[HttpGet] //metodo get es un metodo http /ActionResult= devuelve codigo de status
         public async Task<ActionResult<List<Paciente>>> Get() 
         {
-            return await context.Pacientes.ToListAsync();
+            //return await context.Pacientes.ToListAsync();
+            var resp = await context.Pacientes.ToListAsync();
+            return resp;
         }
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Paciente>> Get(int id)

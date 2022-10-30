@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\ConsultorioOdontologicoBD\ConsultorioOdontologico.BD.csproj" />
     <ProjectReference Include="..\Shared\ConsultorioOdontologico.Shared.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,4 @@
-﻿using CONSULTORIODONTOLOGICO.BD.Data.Entidades;
+﻿using ConsultorioOdontologico.BD.Data.Entidades;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

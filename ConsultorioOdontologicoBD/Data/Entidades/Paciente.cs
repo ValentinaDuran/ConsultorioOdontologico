@@ -5,8 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ConsultorioOdontologico;
 
-namespace CONSULTORIODONTOLOGICO.BD.Data.Entidades
+namespace ConsultorioOdontologico.BD.Data.Entidades
 {
     public class Paciente 
     {

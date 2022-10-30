@@ -1,5 +1,6 @@
-﻿using CONSULTORIODONTOLOGICO.BD.Data;
-using CONSULTORIODONTOLOGICO.BD.Data.Entidades;
+﻿//using CONSULTORIODONTOLOGICO.BD.Data;
+//using CONSULTORIODONTOLOGICO.BD.Data.Entidades;
+using ConsultorioOdontologico.BD.Data.Entidades;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,10 +10,10 @@ namespace CONSULTORIODONTOLOGICO.Server.Controllers
     [Route("api/ObrasSociales")]
     public class ObrasSocialesController : ControllerBase
     {
-        private readonly DBContext context;
+        private readonly BDContext context;
 
         //private readonly DBContext context;
-        public ObrasSocialesController(DBContext Context)
+        public ObrasSocialesController(BDContext Context)
         {
             this.context = Context;
         }
