@@ -14,21 +14,21 @@ namespace ConsultorioOdontologico.BD.Data.Entidades
         // un paciente tiene una obra social RELACION 1:MUCHOS
         public int Id { get; set; } 
 
-        [Required]
+        [Required(ErrorMessage ="Campo obligatorio")]
         public string NombreObraSocial { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string Apellido { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string Nombre { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public int DNI { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public long Teléfono { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Campo obligatorio")]
         public string Mail { get; set; }
 
         //Relacion con tabla obra social

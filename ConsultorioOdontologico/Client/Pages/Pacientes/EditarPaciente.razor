@@ -1,0 +1,48 @@
+﻿@page "/Pacientes/Editar/{pacienteId:int}"
+@inject IHttpService http
+@inject NavigationManager navigationmanager
+
+<h3>Editar dato de paciente</h3>
+
+<FormularioP paciente="paciente" onCancel="Cancelar" onValidSubmit="Grabar" />
+
+@code {
+    private Paciente paciente = new Paciente();
+    [Parameter] public int pacienteId { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await Mostrar();
+    }
+
+    private async Task Mostrar()
+    {
+        var respuesta = await http.Get<Paciente>($"api/Pacientes/{pacienteId}");
+        if(respuesta.Error)
+        {
+            var body = respuesta.HttpResponseMessage;
+        }
+        else
+        {
+            paciente = respuesta.Respuesta;
+        }
+    }
+
+    private async void Grabar()
+    {
+        var httpRespuesta = await http.Put<Paciente>($"api/Pacientes/{pacienteId}", paciente);
+        if (httpRespuesta.Error)
+        {
+            var body = httpRespuesta.HttpResponseMessage;
+        }
+        navigationmanager.NavigateTo("/Pacientes");
+
+    }
+    private void Cancelar()
+    {
+        navigationmanager.NavigateTo("/Pacientes");
+
+    }
+
+
+}

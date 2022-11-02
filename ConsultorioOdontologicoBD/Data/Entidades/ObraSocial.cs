@@ -10,7 +10,7 @@ using ConsultorioOdontologico;
 namespace ConsultorioOdontologico.BD.Data.Entidades
 {
     //clase creada despues de sugerencia del profe en la evaluación 8 de agosto
-    public class ObraSocial //:Paciente
+    public class ObraSocial /*:Paciente*/
     {
         //una obra social tiene muchos pacientes 
        
@@ -19,8 +19,8 @@ namespace ConsultorioOdontologico.BD.Data.Entidades
         [Required]
         public string NombreObrasocial { get; set; }
 
-        [Required]
-        public string NumAfiliado { get; set; }
+        //[Required]
+        //public string NumAfiliado { get; set; }
 
         //Relacion con la tabla pacientes
         //public int PacienteId { get; set; }

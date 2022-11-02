@@ -1,0 +1,27 @@
+﻿@page "/Pacientes/Crear"
+@inject IHttpService http
+@inject NavigationManager navigationmanager //clase que me permite manejar en el browser los botonas para volver etc
+
+<h3>Nuevo Paciente</h3>
+
+<FormularioP paciente="paciente" onCancel="Cancelar" onValidSubmit="Grabar"/> 
+
+@code {
+    private Paciente paciente = new Paciente();
+    private async void Grabar()
+    {
+        var httpRespuesta = await http.Post<Paciente>("api/Pacientes", paciente);
+        if(httpRespuesta.Error)
+        {
+            var body = httpRespuesta.HttpResponseMessage;
+        }
+        navigationmanager.NavigateTo("/Pacientes");
+    }
+    private void Cancelar()
+    {
+        navigationmanager.NavigateTo("/Pacientes");
+
+    }
+
+
+}

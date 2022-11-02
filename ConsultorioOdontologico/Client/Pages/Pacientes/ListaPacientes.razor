@@ -1,13 +1,21 @@
 ﻿@page "/Pacientes"
 @inject IHttpService http
+@using ConsultorioOdontologico.Client.Servicios
+@using ConsultorioOdontologico.BD.Data.Entidades
 
+<h3>Lista de Pacientes</h3>
 
-<h3>ListaPacientes</h3>
+<a class="btn btn-primary" href="Pacientes/Crear">Nuevo Paciente</a>
 <table>
     <tr>
-        <th>Paciente</th>
+        
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Mail</th>
+        <th>Obra Social</th>
+        
     </tr>
-
+    
     @if (Pacientes== null)
     {
         <tr>Cargando....</tr>
@@ -19,25 +27,43 @@
     }
     else
     {
-        @foreach (var item in Pacientes)
+       foreach (var item in Pacientes)
        {
-           <tr>
+          <tr>
                <td>@item.Nombre</td>
                <td>@item.Apellido</td>
-               <td>@item.DNI</td>
-               <td>@item.Teléfono</td>
                <td>@item.Mail</td>
                <td>@item.NombreObraSocial</td>
+               <td>@item.DNI</td>
+               <td>@item.Teléfono</td>
+               
+                <td>
+                    <a class="btn btn-primary" href="Pacientes/Editar/@item.Id">Editar</a>
+                </td>
+                <td>
+                    <button class="btn btn-warning" @onclick ="()=>Borrar(item)">Borrar
 
-           </tr>
+                    </button>
+                </td>
+
+          </tr>
            
        }
     }
 </table>
 
+<Confirmacion @ref ="confirmacion"
+    verCancelar="true" verOk="true" textCancelar="PEPE" Titulo="Borrar paciente" textOk="Ok" onCancel="Cancelar" onConfirm="Eliminar">
+    <div>Está por borrar el paciente @PacienteBorrar.Nombre
+        <br/>  
+        Está seguro que desea continuar?
+    </div>
+</Confirmacion>
 
 @code {
     List<Paciente> Pacientes;
+    Paciente PacienteBorrar;
+    Confirmacion confirmacion;
     protected override async Task OnInitializedAsync()
     {
         base.OnInitializedAsync();
@@ -52,6 +78,27 @@
             Pacientes = respuesta.Respuesta;
         }
     }
+    private void Borrar(Paciente pacienteBorrar)
+    {
+        PacienteBorrar = pacienteBorrar;
+        confirmacion.Ver();
 
+
+    }
+    private void Cancelar()
+    {
+        confirmacion.Ocultar();
+        PacienteBorrar = null;
+    }
+    private async Task Eliminar()
+    {
+        var respuesta = await http.Delete($"api/Pacientes/{PacienteBorrar.Id}");
+        if(respuesta.Error)
+        {
+            var body = "Error";
+        }
+        Cancelar();
+        await Leer();
+    }
 
 }

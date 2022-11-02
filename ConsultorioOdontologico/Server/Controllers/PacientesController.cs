@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace CONSULTORIODONTOLOGICO.Server.Controllers
 {
     [ApiController]
-    [Route("api/Pacientes")]//ruta que permite acceder a lo recursos metodos
+    [Route("api/Pacientes")]//ruta que permite acceder a lo recursos metodo
     public class PacientesController : ControllerBase
     {
         private readonly BDContext context;
@@ -51,9 +51,9 @@ namespace CONSULTORIODONTOLOGICO.Server.Controllers
         }
 
         [HttpPut("{id:int}")]
-        public ActionResult Put(int id, [FromBody]Paciente paciente)
+        public ActionResult Put(int id, [FromBody] Paciente paciente)
         {
-            if(id!= paciente.Id)
+            if(id != paciente.Id)
             {
                 return BadRequest("Datos incorrectos");
             }
@@ -64,12 +64,11 @@ namespace CONSULTORIODONTOLOGICO.Server.Controllers
             }
             amnis.Nombre = paciente.Nombre;
             amnis.Apellido = paciente.Apellido;
-            amnis.Id = paciente.Id;
             amnis.NombreObraSocial = paciente.NombreObraSocial;
             amnis.DNI = paciente.DNI;
             amnis.Teléfono = paciente.Teléfono;
-            amnis.Mail = paciente.Mail; 
-
+            amnis.Mail = paciente.Mail;
+            //amnis.Id = paciente.Id;
             try
             {
                 context.Pacientes.Update(amnis);
